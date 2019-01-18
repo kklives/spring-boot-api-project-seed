@@ -6,7 +6,7 @@
 
     <groupId>com.github.lihengming</groupId>
     <artifactId>spring-boot-api-project-seed</artifactId>
-    <version>1.0</version>
+    <version>2.0</version>
     <packaging>jar</packaging>
 
     <properties>
@@ -116,6 +116,26 @@
                     <source>${java.version}</source>
                     <target>${java.version}</target>
                     <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>1.2.0</version>
+                <configuration>
+                    <imageName>towantto.com/${project.name}:${project.version}</imageName>
+                    <baseImage>java:8</baseImage>
+                    <dockerHost>http://10.10.10.99:2375</dockerHost>
+                    <workdir>/ROOT</workdir>
+                    <cmd>["java", "-version"]</cmd>
+                    <entryPoint>["java", "-jar", "${project.build.finalName}.jar"]</entryPoint>
+                    <resources>
+                        <resource>
+                            <targetPath>/ROOT</targetPath>
+                            <directory>${project.build.directory}</directory>
+                            <include>${project.build.finalName}.jar</include>
+                        </resource>
+                    </resources>
                 </configuration>
             </plugin>
         </plugins>
