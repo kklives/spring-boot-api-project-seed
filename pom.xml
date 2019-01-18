@@ -125,7 +125,7 @@
                 <configuration>
                     <imageName>towantto.com/${project.name}:${project.version}</imageName>
                     <baseImage>java:8</baseImage>
-                    <dockerHost>http://10.10.10.99:2375</dockerHost>
+                    <dockerHost>http://10.0.7.33:2375</dockerHost>
                     <workdir>/ROOT</workdir>
                     <cmd>["java", "-version"]</cmd>
                     <entryPoint>["java", "-jar", "${project.build.finalName}.jar"]</entryPoint>
